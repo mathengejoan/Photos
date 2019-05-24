@@ -1,23 +1,23 @@
-from django.shortcuts import render,get_object_or_404, redirect
-from .models import Album,Images
-from .forms import AlbumForm
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Images
+from .forms import ImageForm
+
+
 # Create your views here.
 def index(request):
-    albums = Album.objects.filter(user=request.user)
-    context = {'albums':albums}
-    return render(request,'oreo/index.html',context)
+    images = Images.objects.filter(user=request.user)
+    context = {'images': images}
+    return render(request, 'oreo/index.html', context)
 
-def add_album(request):
-    form = AlbumForm(request.POST or None, request.FILES or None)
+
+def add_images(request):
+    form = ImageForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
-        album = form.save(commit=False)
-        album.cover = request.FILES['cover']
-        album.user=request.user
-        album.save()
-        return render(request, 'oreo/details.html', {'album':album})
-    return render(request, 'oreo/add_album.html',{'form': form})
+        images = form.save(commit=False)
+        images.cover = request.FILES['cover']
+        images.user = request.user
+        images.save()
+        return render(request, 'oreo/details.html', {'images': images})
+    return render(request, 'oreo/add_images.html', {'form': form})
 
-def details(request,album_id):
-    album = get_object_or_404(Album, pk=album_id)
-    return render(request, 'oreo/details.html', {'album': album})

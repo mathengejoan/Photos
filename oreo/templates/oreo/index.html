@@ -2,17 +2,23 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 <div class="container">
-      <h3 class="text-primary text-center" style="font-family: 'Arial Black';  color: navy; ">PHOTO ALBUMS</h3>
-       {% for album in albums %}
+
+      <h3 class="text-primary text-center" style="font-family: 'Arial Black';  color: navy; ">PHOTOS</h3>
+        <div class="col-sm-3">
+            <ul class="nav nav-pills">
+                  <li><a href="{% url 'oreo:add_images' %}">Add Images</a></li>
+            </ul>
+          </div>
+    {% for image in images %}
        <div class="col-sm-3">
        <div class="panel panel-default  my-4" style="background: paleturquoise; ">
-           <a href="{% url 'oreo:details' album.id %}">
-           <img src="{{ album.cover.url }}" class="img img-thumbnail" alt="" style="height: 250px; width: 250px">
+           <a href="">
+                <img src="{{ image.cover.url }}" class="img img-thumbnail" alt="" style="height: 250px; width: 250px">
            </a>
            <div class="caption" style="margin: 2px">
 
-               <h5>{{ album.name}}</h5>
-               <h6>{{ album.year }}</h6>
+               <h5>{{ image.name}}</h5>
+               <h6>{{ image.year }}</h6>
                <a href="" class="btn btn-primary btn-sm">
                    <i class="fas fa-edit"></i>
                </a>
@@ -21,7 +27,9 @@
                </a>
                 <a href="" class="btn btn-danger btn-sm" style="float: right" onclick='return confirm("are you sure you want to delete")'>
                    <i class="fas fa-trash"></i>
+
                </a>
+
 
            </div>
        </div>
