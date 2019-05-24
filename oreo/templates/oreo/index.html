@@ -6,7 +6,7 @@
        {% for album in albums %}
        <div class="col-sm-3">
        <div class="panel panel-default  my-4" style="background: paleturquoise; ">
-           <a>
+           <a href="{% url 'oreo:details' album.id %}">
            <img src="{{ album.cover.url }}" class="img img-thumbnail" alt="" style="height: 250px; width: 250px">
            </a>
            <div class="caption" style="margin: 2px">

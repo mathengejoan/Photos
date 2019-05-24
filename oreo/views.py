@@ -15,9 +15,9 @@ def add_album(request):
         album.cover = request.FILES['cover']
         album.user=request.user
         album.save()
-        return render(request, 'page/details.html', {'album':album})
-    return render(request, 'page/add_album.html',{'form': form})
+        return render(request, 'oreo/details.html', {'album':album})
+    return render(request, 'oreo/add_album.html',{'form': form})
 
 def details(request,album_id):
     album = get_object_or_404(Album, pk=album_id)
-    return render(request, 'page/details.html', {'album': album})
+    return render(request, 'oreo/details.html', {'album': album})
